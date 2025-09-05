@@ -30,7 +30,7 @@ private:
     // Input: current node, current word formed so far, results vector to store words
     // Output: none (modifies results vector by reference)
     // Purpose: Recursively find all complete words starting from the given node
-    void findAllWords(TrieNode* node, string currentWord, vector<string>& results) {
+    void findAllWords(TrieNode* node, string currentWord, vector<string>& results) { //--farah--
         // TODO: Implement this function
     }
 
@@ -39,7 +39,7 @@ public:
     // Input: none
     // Output: none
     // Purpose: Initialize the Trie with a root node
-    Trie() {
+    Trie() {      // --habiba gabr--
         // TODO: Implement this function
     }
 
@@ -47,7 +47,7 @@ public:
     // Input: word to insert (string)
     // Output: none
     // Purpose: Add a word to the Trie by creating nodes for each character
-    void insert(string word) {
+    void insert(string word) { //--habiba gabr--
         // TODO: Implement this function
     }
 
@@ -55,7 +55,7 @@ public:
     // Input: word to search for (string)
     // Output: boolean indicating if the word exists
     // Purpose: Check if the complete word exists in the Trie
-    bool search(string word) {
+    bool search(string word) { //--habiba sakr--
         // TODO: Implement this function
         return false; // placeholder
     }
@@ -64,7 +64,7 @@ public:
     // Input: prefix to check (string)
     // Output: boolean indicating if any word has this prefix
     // Purpose: Verify if the prefix exists in the Trie (doesn't need to be a complete word)
-    bool startsWith(string prefix) {
+    bool startsWith(string prefix) {//--hana wagdy--
         // TODO: Implement this function
         return false; // placeholder
     }
@@ -73,7 +73,7 @@ public:
     // Input: prefix to complete (string)
     // Output: vector of strings that start with the prefix
     // Purpose: Find all complete words that begin with the given prefix
-    vector<string> autocomplete(string prefix) {
+    vector<string> autocomplete(string prefix) {//--omar--
         vector<string> suggestions;
         // TODO: Implement this function
         return suggestions;
@@ -83,7 +83,7 @@ public:
     // BONUS 1: Count total words in the Trie
     // Input: none
     // Output: integer count of words
-    int countWords() {
+    int countWords() {//--habiba sakr--
         // TODO: Implement this function
         return 0;
     }
@@ -91,7 +91,7 @@ public:
     // BONUS 2: Remove a word from the Trie
     // Input: word (string)
     // Output: boolean (true if removed, false if not found)
-    bool remove(string word) {
+    bool remove(string word) {//--farah--
         // TODO: Implement this function
         return false;
     }
@@ -99,7 +99,7 @@ public:
     // BONUS 3: Support uppercase letters & more characters
     // Input: word (string)
     // Output: processed/normalized word (string)
-    string toLowerCase(string word) {
+    string toLowerCase(string word) {//--habiba gabr--
         // TODO: Implement this function
         return word;
     }
@@ -107,7 +107,7 @@ public:
     // BONUS 4: Spell Checker
     // Input: word (string)
     // Output: vector of suggested words
-    vector<string> spellCheck(string word) {
+    vector<string> spellCheck(string word) {//--ahmed--
         vector<string> suggestions;
         // TODO: Implement this function
         return suggestions;
@@ -116,7 +116,7 @@ public:
     // BONUS 5: Find the longest word in the Trie
     // Input: none
     // Output: string (the longest word stored)
-    string longestWord() {
+    string longestWord() {//--hana wagdy--
         // TODO: Implement this function
         return "";
     }
