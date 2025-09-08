@@ -33,6 +33,18 @@ private:
     // Purpose: Recursively find all complete words starting from the given node
     void findAllWords(TrieNode* node, string currentWord, vector<string>& results) { //--farah--
         // TODO: Implement this function
+    if(!node) 
+       return;
+    if(node->isEndOfWord){
+        results.push_back(currentWord);
+    }
+    for(int i=0;i< 26;i++){
+        if(node->children[i] != nullptr){
+            char nextChar ='a'+ i;  
+            findAllWords(node->children[i], currentWord +nextChar,results);
+        }
+    }
+
     }
 
 public:
@@ -104,7 +116,19 @@ public:
     // Output: boolean (true if removed, false if not found)
     bool remove(string word) {//--farah--
         // TODO: Implement this function
+        TrieNode* node =root;
+    for (char c : word){
+        int index= c-'a';
+        if(!node->children[index]){
+            return false;     
+           }
+        node =node->children[index];
+    }
+    if(!node->isEndOfWord){
         return false;
+    }
+    node->isEndOfWord =false; 
+    return true; 
     }
 
     // BONUS 3: Support uppercase letters & more characters     Habiba Gabr  
