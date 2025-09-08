@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -35,20 +36,30 @@ private:
     }
 
 public:
-    // Constructor
+    // Constructor  Habiba Gabr
     // Input: none
     // Output: none
     // Purpose: Initialize the Trie with a root node
     Trie() {      // --habiba gabr--
         // TODO: Implement this function
+        root = new TrieNode();
     }
 
-    // Insert a word into the Trie
+    // Insert a word into the Trie   Habiba Gabr
     // Input: word to insert (string)
     // Output: none
     // Purpose: Add a word to the Trie by creating nodes for each character
     void insert(string word) { //--habiba gabr--
         // TODO: Implement this function
+        TrieNode* node = root;
+        for(int i = 0; i < word.length(); i++){
+            int index = word[i] - 'a';
+            if(node->children [index] == nullptr ){
+                node->children[index] = new TrieNode();
+            }
+            node = node->children[index];
+        }
+        node->isEndOfWord = true;
     }
 
     // Search for a word in the Trie
@@ -96,11 +107,16 @@ public:
         return false;
     }
 
-    // BONUS 3: Support uppercase letters & more characters
+    // BONUS 3: Support uppercase letters & more characters     Habiba Gabr  
     // Input: word (string)
     // Output: processed/normalized word (string)
     string toLowerCase(string word) {//--habiba gabr--
         // TODO: Implement this function
+        for ( int i = 0; i< word.length(); i++){
+            if(word[i]>= 'A' && word[i]<= 'z'){
+                word[i] = word[i] + ('a'- 'A');
+            }
+        }
         return word;
     }
 
@@ -132,7 +148,7 @@ int main() {
 
     Trie trie;
 
-    // Test 1: Basic insertion and search
+/*/    // Test 1: Basic insertion and search
     cout << "\n1. Testing basic insertion and search:" << endl;
     cout << "======================================" << endl;
 
@@ -260,5 +276,5 @@ int main() {
 
     cout << "\n=== ALL TESTS COMPLETED ===" << endl;
 
-    return 0;
+    return 0;*/
 }
