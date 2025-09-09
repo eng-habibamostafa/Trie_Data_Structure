@@ -35,9 +35,18 @@ private:
     // Input: current node, current word formed so far, results vector to store words
     // Output: none (modifies results vector by reference)
     // Purpose: Recursively find all complete words starting from the given node
-    void findAllWords(TrieNode *node, string currentWord, vector<string> &results)
-    { //--farah--
-      // TODO: Implement this function
+    void findAllWords(TrieNode* node, string currentWord, vector<string>& results) { //--farah--
+        // TODO: Implement this function
+    if(!node)
+       return;
+    if(node->isEndOfWord){
+        results.push_back(currentWord);
+    }
+    for(int i=0;i< 26;i++){
+        if(node->children[i] != nullptr){
+            char nextChar ='a'+ i;
+            findAllWords(node->children[i], currentWord +nextChar,results);
+        }
     }
 
 public:
@@ -77,8 +86,15 @@ public:
     // Purpose: Check if the complete word exists in the Trie
     bool search(string word)
     { //--habiba sakr--
-        // TODO: Implement this function
-        return false; // placeholder
+        TrieNode* node = root;
+        for (char c : word) {
+            int index = c - 'a';
+            if (node->children[index] == nullptr) {
+                return false;
+            }
+            node = node->children[index];
+        }
+        return node->isEndOfWord;
     }
 
     // Check if any word starts with the given prefix
@@ -124,8 +140,22 @@ public:
     // Output: integer count of words
     int countWords()
     { //--habiba sakr--
-        // TODO: Implement this function
-        return 0;
+        return countWordsHelper(root);
+    }
+    // Helper function to count words recursively
+    int countWordsHelper(TrieNode* node) {
+        if (!node) return 0;
+
+        int count = 0;
+        if (node->isEndOfWord) count++;
+
+        for (int i = 0; i < 26; i++) {
+            if (node->children[i] != nullptr) {
+                count += countWordsHelper(node->children[i]);
+            }
+
+        }
+        return count;
     }
 
     // BONUS 2: Remove a word from the Trie
@@ -134,7 +164,19 @@ public:
     bool remove(string word)
     { //--farah--
         // TODO: Implement this function
+        TrieNode* node =root;
+    for (char c : word){
+        int index= c-'a';
+        if(!node->children[index]){
+            return false;
+           }
+        node =node->children[index];
+    }
+    if(!node->isEndOfWord){
         return false;
+    }
+    node->isEndOfWord =false;
+    return true;
     }
 
     // BONUS 3: Support uppercase letters & more characters     Habiba Gabr
