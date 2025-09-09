@@ -187,7 +187,7 @@ public:
         // TODO: Implement this function
         for (int i = 0; i < word.length(); i++)
         {
-            if (word[i] >= 'A' && word[i] <= 'z')
+            if (word[i] >= 'A' && word[i] <= 'Z')
             {
                 word[i] = word[i] + ('a' - 'A');
             }
