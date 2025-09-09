@@ -48,7 +48,7 @@ private:
             findAllWords(node->children[i], currentWord +nextChar,results);
         }
     }
-
+    }
 public:
     // Constructor  Habiba Gabr
     // Input: none
@@ -104,6 +104,7 @@ public:
     bool startsWith(string prefix)
     { //--hana wagdy--
         // TODO: Implement this function
+       // prefix = toLowerCase(prefix);
         TrieNode *temp = root;
 
         for (char c : prefix)
@@ -252,7 +253,7 @@ int main()
 
     Trie trie;
 
-    /*/    // Test 1: Basic insertion and search
+        // Test 1: Basic insertion and search
         cout << "\n1. Testing basic insertion and search:" << endl;
         cout << "======================================" << endl;
 
@@ -275,7 +276,7 @@ int main()
             cout << "Search '" << word << "': " << (found ? "FOUND" : "NOT FOUND") << " (expected: NOT FOUND)" << endl;
         }
 
-        // Test 2: Prefix checking
+       // Test 2: Prefix checking
         cout << "\n2. Testing prefix checking:" << endl;
         cout << "==========================" << endl;
 
@@ -291,7 +292,7 @@ int main()
             cout << "Prefix '" << prefix << "': " << (hasPrefix ? "EXISTS" : "DOESN'T EXIST") << " (expected: DOESN'T EXIST)" << endl;
         }
 
-        // Test 3: Autocomplete functionality
+        /* // Test 3: Autocomplete functionality
         cout << "\n3. Testing autocomplete functionality:" << endl;
         cout << "======================================" << endl;
 
@@ -310,7 +311,7 @@ int main()
             cout << endl;
         }
 
-        // Test 4: Edge cases
+       // Test 4: Edge cases
         cout << "\n4. Testing edge cases:" << endl;
         cout << "======================" << endl;
 
@@ -380,5 +381,5 @@ int main()
 
         cout << "\n=== ALL TESTS COMPLETED ===" << endl;
 
-        return 0;*/
+        return 0; */
 }
