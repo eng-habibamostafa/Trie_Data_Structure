@@ -31,11 +31,11 @@ class Trie
 private:
     TrieNode *root;
 
-    // Helper function to find all words from a node
+    // Helper function to find all words from a node    //--farah--
     // Input: current node, current word formed so far, results vector to store words
     // Output: none (modifies results vector by reference)
     // Purpose: Recursively find all complete words starting from the given node
-    void findAllWords(TrieNode* node, string currentWord, vector<string>& results) { //--farah--
+    void findAllWords(TrieNode* node, string currentWord, vector<string>& results) {
         // TODO: Implement this function
     if(!node)
        return;
@@ -50,23 +50,24 @@ private:
     }
     }
 public:
-    // Constructor  Habiba Gabr
+    // Constructor   // --habiba gabr--
     // Input: none
     // Output: none
     // Purpose: Initialize the Trie with a root node
     Trie()
-    { // --habiba gabr--
+    {
         // TODO: Implement this function
         root = new TrieNode();
     }
 
-    // Insert a word into the Trie   Habiba Gabr
+    // Insert a word into the Trie  //--habiba gabr--
     // Input: word to insert (string)
     // Output: none
     // Purpose: Add a word to the Trie by creating nodes for each character
     void insert(string word)
-    { //--habiba gabr--
+    {
         // TODO: Implement this function
+        word = toLowerCase(word);
         TrieNode *node = root;
         for (int i = 0; i < word.length(); i++)
         {
@@ -80,12 +81,13 @@ public:
         node->isEndOfWord = true;
     }
 
-    // Search for a word in the Trie
+    // Search for a word in the Trie   //--habiba sakr--
     // Input: word to search for (string)
     // Output: boolean indicating if the word exists
     // Purpose: Check if the complete word exists in the Trie
     bool search(string word)
-    { //--habiba sakr--
+    {
+        word = toLowerCase(word);
         TrieNode* node = root;
         for (char c : word) {
             int index = c - 'a';
@@ -97,14 +99,14 @@ public:
         return node->isEndOfWord;
     }
 
-    // Check if any word starts with the given prefix
+    // Check if any word starts with the given prefix    //--hana wagdy--
     // Input: prefix to check (string)
     // Output: boolean indicating if any word has this prefix
     // Purpose: Verify if the prefix exists in the Trie (doesn't need to be a complete word)
     bool startsWith(string prefix)
-    { //--hana wagdy--
+    {
         // TODO: Implement this function
-       // prefix = toLowerCase(prefix);
+        prefix = toLowerCase(prefix);
         TrieNode *temp = root;
 
         for (char c : prefix)
@@ -124,23 +126,33 @@ public:
         return true;
     }
 
-    // Get all words that start with the given prefix
+    // Get all words that start with the given prefix     //--omar--
     // Input: prefix to complete (string)
     // Output: vector of strings that start with the prefix
     // Purpose: Find all complete words that begin with the given prefix
-    vector<string> autocomplete(string prefix)
-    { //--omar--
-        vector<string> suggestions;
-        // TODO: Implement this function
-        return suggestions;
+   vector<string> autocomplete(string prefix)
+{
+    vector<string> suggestions;
+    prefix = toLowerCase(prefix);
+    if (startsWith(prefix)) {
+        TrieNode* temp = root;
+        for (char c : prefix) {
+            int index = c - 'a';
+            if (temp->children[index] != nullptr) {
+                temp = temp->children[index];
+            }
+        }
+        findAllWords(temp, prefix, suggestions);
     }
+    return suggestions;
+}
     // ================== BONUS FUNCTIONS ==================
 
-    // BONUS 1: Count total words in the Trie
+    // BONUS 1: Count total words in the Trie    //--habiba sakr--
     // Input: none
     // Output: integer count of words
     int countWords()
-    { //--habiba sakr--
+    {
         return countWordsHelper(root);
     }
     // Helper function to count words recursively
@@ -159,11 +171,11 @@ public:
         return count;
     }
 
-    // BONUS 2: Remove a word from the Trie
+    // BONUS 2: Remove a word from the Trie    //--farah--
     // Input: word (string)
     // Output: boolean (true if removed, false if not found)
     bool remove(string word)
-    { //--farah--
+    {
         // TODO: Implement this function
         TrieNode* node =root;
     for (char c : word){
@@ -180,11 +192,11 @@ public:
     return true;
     }
 
-    // BONUS 3: Support uppercase letters & more characters     Habiba Gabr
+    // BONUS 3: Support uppercase letters & more characters    //--habiba gabr--
     // Input: word (string)
     // Output: processed/normalized word (string)
     string toLowerCase(string word)
-    { //--habiba gabr--
+    {
         // TODO: Implement this function
         for (int i = 0; i < word.length(); i++)
         {
@@ -196,21 +208,21 @@ public:
         return word;
     }
 
-    // BONUS 4: Spell Checker
+    // BONUS 4: Spell Checker      //--ahmed--
     // Input: word (string)
     // Output: vector of suggested words
     vector<string> spellCheck(string word)
-    { //--ahmed--
+    {
         vector<string> suggestions;
         // TODO: Implement this function
         return suggestions;
     }
 
-    // BONUS 5: Find the longest word in the Trie
+    // BONUS 5: Find the longest word in the Trie      //--hana wagdy--
     // Input: none
     // Output: string (the longest word stored)
     string longestWord() // using BFS(
-    {                    //--hana wagdy--
+    {
         // TODO: Implement this function
         TrieNode *temp = root;
         queue<pair<TrieNode *, string>> q; // first time to know
@@ -253,7 +265,7 @@ int main()
 
     Trie trie;
 
-        // Test 1: Basic insertion and search
+       // Test 1: Basic insertion and search
         cout << "\n1. Testing basic insertion and search:" << endl;
         cout << "======================================" << endl;
 
@@ -292,7 +304,7 @@ int main()
             cout << "Prefix '" << prefix << "': " << (hasPrefix ? "EXISTS" : "DOESN'T EXIST") << " (expected: DOESN'T EXIST)" << endl;
         }
 
-        /* // Test 3: Autocomplete functionality
+        // Test 3: Autocomplete functionality
         cout << "\n3. Testing autocomplete functionality:" << endl;
         cout << "======================================" << endl;
 
@@ -381,5 +393,5 @@ int main()
 
         cout << "\n=== ALL TESTS COMPLETED ===" << endl;
 
-        return 0; */
+        return 0;
 }
