@@ -132,6 +132,19 @@ public:
     { //--omar--
         vector<string> suggestions;
         // TODO: Implement this function
+        int index;
+        if(startsWith(prefix)){
+            TrieNode* temp = root;
+            for (char c : prefix)
+            {
+                index = c - 'a';
+                if (temp->children[index] != nullptr)
+                {
+                    temp = temp->children[index];
+                }
+            }
+            findAllWords(temp, prefix, suggestions);
+        }
         return suggestions;
     }
     // ================== BONUS FUNCTIONS ==================
@@ -292,7 +305,7 @@ int main()
             cout << "Prefix '" << prefix << "': " << (hasPrefix ? "EXISTS" : "DOESN'T EXIST") << " (expected: DOESN'T EXIST)" << endl;
         }
 
-        /* // Test 3: Autocomplete functionality
+        // Test 3: Autocomplete functionality
         cout << "\n3. Testing autocomplete functionality:" << endl;
         cout << "======================================" << endl;
 
@@ -381,5 +394,5 @@ int main()
 
         cout << "\n=== ALL TESTS COMPLETED ===" << endl;
 
-        return 0; */
+        return 0; 
 }
