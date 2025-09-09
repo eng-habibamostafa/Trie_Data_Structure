@@ -208,7 +208,7 @@ public:
         return word;
     }
 
-    // BONUS 4: Spell Checker      //--ahmed--
+    // BONUS 4: Spell Checker      // habiba gabr--
     // Input: word (string)
     // Output: vector of suggested words
     vector<string> spellCheck(string word)
@@ -217,9 +217,9 @@ public:
         // TODO: Implement this function
         word = toLowerCase(word);
         if(search(word)){
-            cout<<"word" << word <<" is correct"<<endl;
-            return suggestions;
+          return {word};
         }
+
         TrieNode* node = root;
         string prefix = "";
         for(char c : word){
@@ -231,8 +231,7 @@ public:
                 node = node->children[index];
         }
             if(!prefix.empty()){
-                cout<< "word not found, did you mean: "<<endl;
-                findAllWords(node, prefix, suggestions);
+            findAllWords(node, prefix, suggestions);
 
           }
         return suggestions;
