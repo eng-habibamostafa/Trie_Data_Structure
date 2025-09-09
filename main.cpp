@@ -215,6 +215,26 @@ public:
     {
         vector<string> suggestions;
         // TODO: Implement this function
+        word = toLowerCase(word);
+        if(search(word)){
+            cout<<"word" << word <<" is correct"<<endl;
+            return suggestions;
+        }
+        TrieNode* node = root;
+        string prefix = "";
+        for(char c : word){
+            int index = c - 'a';
+            if(!node->children[index]){
+                break;
+            }
+            prefix += c;
+                node = node->children[index];
+        }
+            if(!prefix.empty()){
+                cout<< "word not found, did you mean: "<<endl;
+                findAllWords(node, prefix, suggestions);
+
+          }
         return suggestions;
     }
 
